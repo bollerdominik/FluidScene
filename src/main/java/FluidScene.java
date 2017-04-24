@@ -44,6 +44,15 @@ public class FluidScene extends PApplet {
     int DISPLAY_fluid_texture_mode = 0;
     boolean moveVase = true;
 
+    String[] headlines = {"Ceramic produced and decorated by craftsmen at the Madoura atelier in Vallaouris, France.",
+            "Picasso started making ceramics in 1947 at the Madoura workshop, following a rather unconventional process",
+            "As he didn’t know how to throw a pot on the wheel, he relied on a potter to create the desired shapes and then he hand-shaped, decorated and fired the objects himself",
+            "As a favour to the owners of the workshop, Picasso allowed them to make authentic copies and sell them"};
+    int index = 0;
+    int TextX = 100;
+    int TextY = 560;
+    PFont font;
+
     public static void main(String args[]) {
         PApplet.main("FluidScene");
     }
@@ -57,6 +66,8 @@ public class FluidScene extends PApplet {
     @Override
     public void setup() {
 
+        font = createFont("Verdana",30);
+        TextX = 0; // initialize text offscreen
 
         // main library context
         DwPixelFlow context = new DwPixelFlow(this);
@@ -111,13 +122,29 @@ public class FluidScene extends PApplet {
 
         // update simulation
         if(UPDATE_FLUID){
+
             pg_obstacles.beginDraw();
             pg_obstacles.clear();
+            pg_obstacles.colorMode(HSB, 100);
+            pg_obstacles.textFont(font);
+            pg_obstacles.text(headlines[index],TextX, height - 40);
             pg_obstacles.fill(255,0,0);
             pg_obstacles.translate((width/2),(height/2));
             pg_obstacles.rotate(radians(vase.movement));
             PShape bot =  pg_obstacles.loadShape("src\\main\\resources\\drawing.svg");
             pg_obstacles.shape(bot, -75, -70, 250, 137);
+            TextX = TextX - 3;
+
+            // If x is less than the negative width, then it is off the screen
+            // textWidth() is used to calculate the width of the current String.
+            float W = pg_obstacles.textWidth(headlines[index]);
+            if (TextX < -W)
+            {
+                TextX = width;
+                // index is incremented when the current String has left the screen in order to display a new String.
+                index = (index + 1) % headlines.length;
+            }
+
             pg_obstacles.endDraw();
 
             fluid.update();
@@ -147,7 +174,7 @@ public class FluidScene extends PApplet {
         pg_obstacles.translate(frameCount,0);
         image(pg_fluid    , 0, 0);
         //Hide obstacle
-        //image(pg_obstacles, 0, 0);
+        image(pg_obstacles, 0, 0);
 
         obstacle_painter.displayBrush(this.g);
 
