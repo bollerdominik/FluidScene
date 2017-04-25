@@ -67,7 +67,7 @@ public class FluidScene extends PApplet {
     public void setup() {
 
         font = createFont("Verdana",30);
-        TextX = 0; // initialize text offscreen
+        TextX = width; // initialize text offscreen
 
         // main library context
         DwPixelFlow context = new DwPixelFlow(this);
