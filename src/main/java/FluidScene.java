@@ -133,7 +133,7 @@ public class FluidScene extends PApplet {
             pg_obstacles.rotate(radians(vase.movement));
             PShape bot =  pg_obstacles.loadShape("src\\main\\resources\\drawing.svg");
             pg_obstacles.shape(bot, -75, -70, 250, 137);
-            TextX = TextX - 3;
+            TextX = TextX - 2;
 
             // If x is less than the negative width, then it is off the screen
             // textWidth() is used to calculate the width of the current String.
