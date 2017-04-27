@@ -10,7 +10,27 @@
     <groupId>com.uni.assignment</groupId>
     <artifactId>FluidScene</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <classpathScope>compile</classpathScope>
+                    <includePluginDependencies>true</includePluginDependencies>
+                    <mainClass>FluidScene</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
 
@@ -31,6 +51,16 @@
             <version>LATEST</version>
         </dependency>
 
+        <dependency>
+            <groupId>PixelFlow</groupId>
+            <artifactId>com.thomasdiewald.pixelflow</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/PixelFlow/library/PixelFlow.jar</systemPath>
+        </dependency>
+
 
     </dependencies>
+
+
 </project>

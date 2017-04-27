@@ -1,5 +1,4 @@
 import com.thomasdiewald.pixelflow.java.fluid.DwFluid2D;
-import controlP5.ControlP5;
 import processing.core.PApplet;
 
 /**
@@ -8,11 +7,9 @@ import processing.core.PApplet;
 public class MyFluidData implements DwFluid2D.FluidData {
 
     PApplet parent;
-    private ControlP5 cp5;
     float px, py;
-    public MyFluidData(PApplet parent, ControlP5 cp5) {
+    public MyFluidData(PApplet parent) {
         this.parent = parent;
-        this.cp5 = cp5;
         //px = 0;
         //py = 0;
     }
@@ -44,7 +41,7 @@ public class MyFluidData implements DwFluid2D.FluidData {
         //fluid.addVelocity(px, py, radius, 0, -50);
 
 
-        boolean mouse_input = !cp5.isMouseOver() && parent.mousePressed;
+        boolean mouse_input = parent.mousePressed;
 
         // add impulse: density + velocity
         if (mouse_input && parent.mouseButton == parent.LEFT) {
