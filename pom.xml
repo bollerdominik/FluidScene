@@ -51,13 +51,6 @@
             <version>LATEST</version>
         </dependency>
 
-        <dependency>
-            <groupId>PixelFlow</groupId>
-            <artifactId>com.thomasdiewald.pixelflow</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/PixelFlow/library/PixelFlow.jar</systemPath>
-        </dependency>
 
 
     </dependencies>
